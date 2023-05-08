@@ -1,8 +1,12 @@
 <?php
+session_start();
 include_once __DIR__ . "/functions.php";
+
 if(isset($_GET["length"])) {
     $password_length = $_GET["length"];
     $password = generate_password($password_length);
+    $_SESSION["password"] = $password;
+    header("Location: success.php");
 }
 ?>
 
