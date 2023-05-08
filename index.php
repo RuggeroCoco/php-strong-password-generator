@@ -1,22 +1,8 @@
 <?php
+include_once __DIR__ . "/functions.php";
 if(isset($_GET["length"])) {
     $password_length = $_GET["length"];
     $password = generate_password($password_length);
-}
-
-function generate_password($pwd_length) {
-    $alphabet = 'abcdefghijklmnopqrstuvwxyz';
-    $numbers = '0123456789';
-    $symbols = '!?&%$<>^+-*/()[]{}@#_=';
-    $full_chars= $alphabet . $numbers . $symbols;
-    $passwd = '';
-
-    while(strlen($passwd) < $pwd_length) {
-        $index = rand(0, strlen($full_chars));
-        $passwd .= $full_chars[$index];
-    }
-
-    return $passwd;
 }
 ?>
 
@@ -54,7 +40,7 @@ function generate_password($pwd_length) {
                         <div class="row mb-3">
                             <label for="length" class="col-sm-7 col-form-label">Lunghezza password:</label>
                             <div class="col-sm-3">
-                                <input type="number" name="length" id="length" class="form-control">
+                                <input type="number" name="length" id="length" class="form-control" value="<?php echo $_GET["length"] ?? '' ?>">
                             </div>
                         </div>
                         <div class="mb-3">
